@@ -1,0 +1,25 @@
+# ==============================================================================
+# .gitignore for vikasrao-ops/vikasrao-ops (Profile Portfolio Repository)
+# ==============================================================================
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Separate standalone repositories (maintained in independent GitHub repos)
+01-flagship-projects/
+02-poc-laboratory/
+03-portfolio-website/
+05-publishing/
+
+# Sensitive data, keys, credentials
+*.pem
+*.key
+*.token
+*.pat
+*.tfstate
+*.tfstate.*
+node_modules/
+.env*

@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-box" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#0B1120" />
+    </linearGradient>
+    <linearGradient id="azure-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+    <linearGradient id="aws-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <linearGradient id="sec-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <linearGradient id="k8s-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5" />
+      <stop offset="100%" stop-color="#6366F1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="480" rx="12" fill="#0B1120" stroke="#1E293B" stroke-width="1.5" />
+  
+  <!-- Title Bar -->
+  <rect x="0" y="0" width="1100" height="48" rx="12" fill="#111827" />
+  <circle cx="28" cy="24" r="5" fill="#EF4444" />
+  <circle cx="44" cy="24" r="5" fill="#F59E0B" />
+  <circle cx="60" cy="24" r="5" fill="#10B981" />
+  <text x="84" y="29" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', monospace" font-size="12" font-weight="600">VIKAS RAO // ARCHITECTURAL TOPOLOGY &amp; SKILL ECOSYSTEM</text>
+  <line x1="0" y1="48" x2="1100" y2="48" stroke="#1E293B" stroke-width="1" />
+
+  <!-- Layer 1: CI/CD & DevSecOps Control Plane -->
+  <g transform="translate(40, 70)">
+    <rect width="1020" height="75" rx="8" fill="url(#bg-box)" stroke="#1E293B" stroke-width="1" />
+    <rect x="0" y="0" width="4" height="75" rx="2" fill="#22D3EE" />
+    <text x="20" y="24" fill="#38BDF8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="700" letter-spacing="1">AUTOMATION &amp; DEVSECOPS PIPELINE</text>
+    
+    <!-- Step badges -->
+    <g transform="translate(20, 36)">
+      <rect width="170" height="26" rx="4" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="85" y="17" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="600" text-anchor="middle">GitHub Actions / Azure DevOps</text>
+    </g>
+    <path d="M 195 49 L 215 49" stroke="#64748B" stroke-width="2" marker-end="url(#arrow)" />
+    <g transform="translate(220, 36)">
+      <rect width="170" height="26" rx="4" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="85" y="17" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="600" text-anchor="middle">Gitleaks + SonarQube SAST</text>
+    </g>
+    <path d="M 395 49 L 415 49" stroke="#64748B" stroke-width="2" />
+    <g transform="translate(420, 36)">
+      <rect width="170" height="26" rx="4" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="85" y="17" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="600" text-anchor="middle">Checkov + Trivy Vuln Scan</text>
+    </g>
+    <path d="M 595 49 L 615 49" stroke="#64748B" stroke-width="2" />
+    <g transform="translate(620, 36)">
+      <rect width="170" height="26" rx="4" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="85" y="17" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="600" text-anchor="middle">Syft SBOM + Cosign Attest</text>
+    </g>
+    <path d="M 795 49 L 815 49" stroke="#64748B" stroke-width="2" />
+    <g transform="translate(820, 36)">
+      <rect width="175" height="26" rx="4" fill="#0C4A6E" stroke="#0284C7" stroke-width="1"/>
+      <text x="87" y="17" fill="#38BDF8" font-family="sans-serif" font-size="10" font-weight="700" text-anchor="middle">Terraform Automated Apply</text>
+    </g>
+  </g>
+
+  <!-- Layer 2: Cloud Infrastructure Topology (Azure & AWS & GCP) -->
+  <g transform="translate(40, 165)">
+    <!-- Column 1: Azure Enterprise Hub-and-Spoke (Primary Professional) -->
+    <g transform="translate(0, 0)">
+      <rect width="495" height="185" rx="8" fill="url(#bg-box)" stroke="#1E293B" stroke-width="1" />
+      <rect x="0" y="0" width="4" height="185" rx="2" fill="url(#azure-grad)" />
+      <text x="18" y="24" fill="#38BDF8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700">AZURE ENTERPRISE CLOUD (PRIMARY - 2+ YRS EXP)</text>
+      <text x="18" y="40" fill="#94A3B8" font-family="sans-serif" font-size="10">Hub-and-Spoke Architecture • Management Groups • Azure Policy</text>
+
+      <!-- Inner sub-boxes -->
+      <g transform="translate(18, 52)">
+        <rect width="215" height="52" rx="6" fill="#1E293B" stroke="#334155" stroke-width="0.75" />
+        <text x="12" y="20" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="700">Hub VNet &amp; Connectivity</text>
+        <text x="12" y="36" fill="#94A3B8" font-family="sans-serif" font-size="9">Azure Firewall • VPN/ER GW • Bastion</text>
+      </g>
+      <g transform="translate(245, 52)">
+        <rect width="232" height="52" rx="6" fill="#1E293B" stroke="#334155" stroke-width="0.75" />
+        <text x="12" y="20" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="700">Spoke VNets (Workloads)</text>
+        <text x="12" y="36" fill="#94A3B8" font-family="sans-serif" font-size="9">Private Endpoints • App Gateway • AKS</text>
+      </g>
+      <g transform="translate(18, 114)">
+        <rect width="459" height="54" rx="6" fill="#0F172A" stroke="#1E293B" stroke-width="0.75" />
+        <text x="12" y="18" fill="#38BDF8" font-family="sans-serif" font-size="10" font-weight="700">Enterprise Security &amp; Compliance Baseline</text>
+        <text x="12" y="34" fill="#94A3B8" font-family="sans-serif" font-size="9">RBAC Least-Privilege • Key Vault HSM • NSG Flow Logs • Microsoft Defender for Cloud</text>
+      </g>
+    </g>
+
+    <!-- Column 2: AWS Secure Infrastructure & Foundational GCP -->
+    <g transform="translate(515, 0)">
+      <rect width="505" height="185" rx="8" fill="url(#bg-box)" stroke="#1E293B" stroke-width="1" />
+      <rect x="0" y="0" width="4" height="185" rx="2" fill="url(#aws-grad)" />
+      <text x="18" y="24" fill="#F59E0B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700">AWS ARCHITECTURE (HANDS-ON PROJECTS) &amp; GCP</text>
+      <text x="18" y="40" fill="#94A3B8" font-family="sans-serif" font-size="10">Multi-AZ VPC • Bastion • Public/Private Subnets • S3 Encryption</text>
+
+      <g transform="translate(18, 52)">
+        <rect width="225" height="52" rx="6" fill="#1E293B" stroke="#334155" stroke-width="0.75" />
+        <text x="12" y="20" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="700">AWS Multi-AZ VPC</text>
+        <text x="12" y="36" fill="#94A3B8" font-family="sans-serif" font-size="9">NAT GW • Route Tables • Security Groups</text>
+      </g>
+      <g transform="translate(255, 52)">
+        <rect width="232" height="52" rx="6" fill="#1E293B" stroke="#334155" stroke-width="0.75" />
+        <text x="12" y="20" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="700">Compute &amp; IAM Security</text>
+        <text x="12" y="36" fill="#94A3B8" font-family="sans-serif" font-size="9">KMS CMK • EC2 IAM Roles • S3 MFA Delete</text>
+      </g>
+      <g transform="translate(18, 114)">
+        <rect width="469" height="54" rx="6" fill="#0F172A" stroke="#1E293B" stroke-width="0.75" />
+        <text x="12" y="18" fill="#F59E0B" font-family="sans-serif" font-size="10" font-weight="700">GCP Foundational Integration (POC)</text>
+        <text x="12" y="34" fill="#94A3B8" font-family="sans-serif" font-size="9">VPC Peering concepts • Cloud Storage buckets • IAM Service Accounts • Cloud Run POC</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Layer 3: Observability, FinOps & Kubernetes Platform -->
+  <g transform="translate(40, 370)">
+    <rect width="1020" height="85" rx="8" fill="url(#bg-box)" stroke="#1E293B" stroke-width="1" />
+    <rect x="0" y="0" width="4" height="85" rx="2" fill="url(#k8s-grad)" />
+    
+    <g transform="translate(20, 16)">
+      <text x="0" y="14" fill="#818CF8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="700" letter-spacing="1">PLATFORM RUNTIME &amp; RELIABILITY</text>
+      
+      <g transform="translate(0, 26)">
+        <rect width="305" height="32" rx="5" fill="#1E293B" stroke="#334155" stroke-width="0.75" />
+        <text x="14" y="20" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="600">Kubernetes Platform (Helm / HPA / Ingress)</text>
+      </g>
+      <g transform="translate(320, 26)">
+        <rect width="320" height="32" rx="5" fill="#1E293B" stroke="#334155" stroke-width="0.75" />
+        <text x="14" y="20" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="600">Observability (Prometheus + Grafana + Alerts)</text>
+      </g>
+      <g transform="translate(655, 26)">
+        <rect width="325" height="32" rx="5" fill="#1E293B" stroke="#334155" stroke-width="0.75" />
+        <text x="14" y="20" fill="#F8FAFC" font-family="sans-serif" font-size="10" font-weight="600">FinOps &amp; Governance (Tagging / Cost Waste)</text>
+      </g>
+    </g>
+  </g>
+</svg>
+

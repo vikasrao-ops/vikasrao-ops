@@ -1,0 +1,34 @@
+groups:
+  - name: system_and_service_alerts
+    rules:
+      - alert: HighNodeCpuUtilization
+        expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 85
+        for: 5m
+        labels:
+          severity: critical
+          tier: infrastructure
+        annotations:
+          summary: "Host CPU utilization critical (instance {{ $labels.instance }})"
+          description: "CPU usage has exceeded 85% for more than 5 minutes. Current value: {{ $value }}%"
+          runbook_url: "https://github.com/vikasrao-ops/observability-platform/blob/main/docs/sli-slo-guide.md#cpu-remediation"
+
+      - alert: HostMemoryLow
+        expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 15
+        for: 5m
+        labels:
+          severity: warning
+          tier: infrastructure
+        annotations:
+          summary: "Host memory under 15% available"
+          description: "Available memory has dropped below 15% on instance {{ $labels.instance }}."
+
+      - alert: ServiceEndpointDown
+        expr: up == 0
+        for: 2m
+        labels:
+          severity: critical
+          tier: application
+        annotations:
+          summary: "Target instance unreachable: {{ $labels.instance }}"
+          description: "Prometheus failed to scrape endpoint {{ $labels.instance }} for > 2 minutes."
+

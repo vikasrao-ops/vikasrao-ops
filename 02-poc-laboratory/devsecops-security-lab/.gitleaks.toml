@@ -1,0 +1,23 @@
+title = "Enterprise Gitleaks Configuration"
+
+[extend]
+useDefault = true
+
+[[rules]]
+description = "Custom Enterprise Internal API Key"
+id = "custom-corp-api-key"
+regex = '''(?i)(corp[_-]?key[_-]?[0-9a-zA-Z]{32})'''
+secretGroup = 1
+entropy = 3.5
+keywords = [
+    "corp_key",
+    "corp-key"
+]
+
+[allowlist]
+description = "Global allowlists for tests"
+paths = [
+    '''examples/mock-secrets.json''',
+    '''README.md'''
+]
+

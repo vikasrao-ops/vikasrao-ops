@@ -141,3 +141,4 @@ Hands-on laboratories isolating specific architectural patterns, tooling integra
 <div align="center">
   <sub>Engineered with precision • Local-First Architecture • Transparent Cloud Engineering</sub>
 </div>
+

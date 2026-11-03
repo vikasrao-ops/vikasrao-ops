@@ -1,0 +1,35 @@
+name: "FinOps Tool Unit Testing"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: "Run Unit Tests & Sample Scan"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Unit Tests
+        run: |
+          cd src
+          python -m unittest test_finops_scanner.py
+
+      - name: Execute Sample Scan
+        run: |
+          python src/finops_scanner.py --inventory examples/sample-inventory.json --output test-report.json
+          cat test-report.json
+

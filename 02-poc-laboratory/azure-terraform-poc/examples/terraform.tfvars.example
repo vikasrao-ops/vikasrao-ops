@@ -1,0 +1,8 @@
+location    = "eastus"
+environment = "poc"
+tags = {
+  Environment = "POC"
+  ManagedBy   = "Terraform"
+  Project     = "Azure-Terraform-POC"
+}
+

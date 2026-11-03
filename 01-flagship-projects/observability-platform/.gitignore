@@ -1,0 +1,5 @@
+prometheus_data/
+grafana_data/
+*.log
+.DS_Store
+

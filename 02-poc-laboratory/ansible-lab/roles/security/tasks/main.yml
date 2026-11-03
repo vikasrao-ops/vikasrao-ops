@@ -1,0 +1,49 @@
+---
+# 1. Ensure system security packages are installed
+- name: Install baseline security packages
+  apt:
+    name:
+      - ufw
+      - fail2ban
+      - unattended-upgrades
+    state: present
+    update_cache: yes
+
+# 2. Hardened SSH Configuration
+- name: Disable SSH root login
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PermitRootLogin'
+    line: 'PermitRootLogin no'
+    state: present
+  notify: Restart sshd
+
+- name: Disable password-based SSH authentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+    state: present
+  notify: Restart sshd
+
+# 3. Configure UFW Firewall (Default Deny Inbound)
+- name: Set UFW default incoming policy to deny
+  ufw:
+    direction: incoming
+    policy: deny
+
+- name: Set UFW default outgoing policy to allow
+  ufw:
+    direction: outgoing
+    policy: allow
+
+- name: Allow SSH port through firewall
+  ufw:
+    rule: limit
+    port: '22'
+    proto: tcp
+
+- name: Enable UFW firewall
+  ufw:
+    state: enabled
+

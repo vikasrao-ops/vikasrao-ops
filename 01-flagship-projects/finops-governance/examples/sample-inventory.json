@@ -1,0 +1,44 @@
+[
+  {
+    "id": "vol-08492048291a",
+    "type": "aws_ebs_volume",
+    "status": "available",
+    "size_gb": 200,
+    "estimated_monthly_cost": 20.00,
+    "tags": {
+      "Environment": "prod",
+      "Owner": "data-team"
+    }
+  },
+  {
+    "id": "pip-core-unattached-01",
+    "type": "azure_public_ip",
+    "associated_instance": null,
+    "estimated_monthly_cost": 3.65,
+    "tags": {
+      "Environment": "prod"
+    }
+  },
+  {
+    "id": "vm-batch-worker-04",
+    "type": "azure_vm",
+    "avg_cpu_percent": 1.8,
+    "estimated_monthly_cost": 120.00,
+    "tags": {
+      "Environment": "prod",
+      "Owner": "platform-engineering",
+      "CostCenter": "CC-INFRA-104"
+    }
+  },
+  {
+    "id": "st-archive-prod",
+    "type": "azure_storage_account",
+    "estimated_monthly_cost": 45.00,
+    "tags": {
+      "Environment": "prod",
+      "Owner": "compliance",
+      "CostCenter": "CC-LEGAL-201"
+    }
+  }
+]
+

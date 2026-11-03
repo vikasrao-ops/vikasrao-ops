@@ -1,0 +1,8 @@
+*.tgz
+.DS_Store
+.idea/
+.vscode/
+charts/
+*.lock
+kubeconfig
+

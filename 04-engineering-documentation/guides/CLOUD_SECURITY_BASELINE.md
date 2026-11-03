@@ -24,3 +24,4 @@
 ## 4. Shift-Left DevSecOps Standard
 * **Commit-Stage Secret Detection:** Gitleaks runs in local pre-commit hooks and CI pipelines to prevent credential leakage.
 * **Container Hardening:** Base container images run under unprivileged non-root UIDs, use read-only root filesystems, drop all Linux capabilities (`cap_drop: ALL`), and eliminate compilers from runtime stages.
+

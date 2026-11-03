@@ -1,0 +1,37 @@
+name: "Infracost Cloud Financial Analysis"
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  infracost:
+    name: "Analyze Infrastructure Cost Diff"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Infracost
+        uses: infracost/actions/setup@v3
+        with:
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
+
+      - name: Generate Baseline Cost
+        run: |
+          infracost breakdown --path=terraform-before --format=json --out-file=/tmp/infracost-base.json
+
+      - name: Generate Optimized Cost Diff
+        run: |
+          infracost diff --path=terraform-after --compare-to=/tmp/infracost-base.json --format=json --out-file=/tmp/infracost.json
+
+      - name: Post Infracost Comment to PR
+        uses: infracost/actions/comment@v1
+        with:
+          path: /tmp/infracost.json
+          behavior: update
+

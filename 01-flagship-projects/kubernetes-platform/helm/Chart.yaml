@@ -1,0 +1,17 @@
+apiVersion: v2
+name: enterprise-workload
+description: Production-grade Helm chart for cloud-native microservices with HPA and NetworkPolicy
+type: application
+version: 1.2.0
+appVersion: "1.0.0"
+keywords:
+  - kubernetes
+  - microservices
+  - devops
+  - hpa
+  - security
+maintainers:
+  - name: Vikas Rao
+    email: contact.vikasrao.ops@gmail.com
+    url: https://github.com/vikasrao-ops
+

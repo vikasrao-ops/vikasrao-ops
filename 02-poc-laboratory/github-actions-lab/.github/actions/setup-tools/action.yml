@@ -1,0 +1,22 @@
+name: "Setup DevOps Tooling Composite Action"
+description: "Standardizes environment preparation across multi-job pipelines"
+inputs:
+  terraform-version:
+    description: "Version of Terraform to install"
+    required: false
+    default: "1.8.0"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: ${{ inputs.terraform-version }}
+
+    - name: Verify Environment
+      shell: bash
+      run: |
+        echo "==> Tooling initialized successfully."
+        terraform --version
+

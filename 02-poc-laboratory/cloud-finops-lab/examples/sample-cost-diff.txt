@@ -1,0 +1,14 @@
+Monthly cost will decrease by $1,214 (-95%)
+
+Project: optimized-workload-tier
+Module path: terraform-after
+
+~ aws_instance.web
+  -$1,214 ($1,274 -> $60)
+  
+  ~ Instance usage (Linux/UNIX, on-demand, m5.4xlarge -> t3.medium)
+    -$530 ($560 -> $30)
+
+  ~ Storage (io2, 10000 IOPS -> gp3, 3000 IOPS baseline)
+    -$684 ($714 -> $30)
+

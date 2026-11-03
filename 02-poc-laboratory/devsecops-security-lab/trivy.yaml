@@ -1,0 +1,15 @@
+scan:
+  scanners:
+    - vuln
+    - misconfig
+    - secret
+  severity:
+    - HIGH
+    - CRITICAL
+  exit-code: 1
+
+vulnerability:
+  ignore-unfixed: true
+
+format: "table"
+

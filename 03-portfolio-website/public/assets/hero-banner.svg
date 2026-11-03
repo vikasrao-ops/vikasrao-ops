@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1120" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+
+    <!-- Accent Linear Gradient -->
+    <linearGradient id="cyan-blue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#22D3EE" />
+    </linearGradient>
+
+    <!-- Subtle Glow Filter -->
+    <filter id="subtle-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="0.75" stroke-opacity="0.6"/>
+      <circle cx="40" cy="40" r="1" fill="#38BDF8" fill-opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="320" fill="url(#bg-grad)" rx="16" />
+  <rect width="1200" height="320" fill="url(#grid)" rx="16" />
+
+  <!-- Accent Edge Lines & Subtle Radial Lighting -->
+  <line x1="0" y1="0" x2="1200" y2="0" stroke="url(#cyan-blue)" stroke-width="3" opacity="0.8" />
+  <circle cx="1100" cy="60" r="180" fill="#38BDF8" opacity="0.04" filter="url(#subtle-glow)" />
+  <circle cx="100" cy="280" r="140" fill="#22D3EE" opacity="0.03" filter="url(#subtle-glow)" />
+
+  <!-- Code / Terminal Bracket Badge -->
+  <g transform="translate(60, 48)">
+    <rect x="0" y="0" width="130" height="26" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1" />
+    <circle cx="14" cy="13" r="3" fill="#22D3EE" />
+    <text x="26" y="17" fill="#38BDF8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="1">DEVOPS // SEC</text>
+  </g>
+
+  <!-- Name & Professional Title -->
+  <text x="60" y="125" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="44" font-weight="800" letter-spacing="-0.5">
+    Vikas Rao
+  </text>
+  
+  <text x="60" y="162" fill="url(#cyan-blue)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="0.2">
+    Multi-Cloud DevOps &amp; DevSecOps Engineer
+  </text>
+
+  <!-- Professional Subtitle / Tagline -->
+  <text x="60" y="200" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400">
+    Building Secure, Scalable and Automated Cloud Infrastructure.
+  </text>
+
+  <!-- Credibility & Experience Pillars (3 distinct cards) -->
+  <g transform="translate(60, 230)">
+    <!-- Pillar 1: Azure Professional Experience -->
+    <g transform="translate(0, 0)">
+      <rect width="320" height="52" rx="8" fill="#111827" stroke="#1E293B" stroke-width="1.2" />
+      <rect x="0" y="0" width="4" height="52" rx="2" fill="#38BDF8" />
+      <text x="16" y="22" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700">PRIMARY: MICROSOFT AZURE</text>
+      <text x="16" y="38" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="400">2+ Years Professional Enterprise Engineering</text>
+    </g>
+
+    <!-- Pillar 2: AWS Hands-on Projects -->
+    <g transform="translate(340, 0)">
+      <rect width="320" height="52" rx="8" fill="#111827" stroke="#1E293B" stroke-width="1.2" />
+      <rect x="0" y="0" width="4" height="52" rx="2" fill="#22D3EE" />
+      <text x="16" y="22" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700">AWS: ARCHITECTURE &amp; IAC</text>
+      <text x="16" y="38" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="400">Hands-on Production Architecture Projects</text>
+    </g>
+
+    <!-- Pillar 3: Core Disciplines -->
+    <g transform="translate(680, 0)">
+      <rect width="360" height="52" rx="8" fill="#111827" stroke="#1E293B" stroke-width="1.2" />
+      <rect x="0" y="0" width="4" height="52" rx="2" fill="#38BDF8" />
+      <text x="16" y="22" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700">CORE INFRASTRUCTURE FOCUS</text>
+      <text x="16" y="38" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="400">Terraform • Kubernetes • DevSecOps • CI/CD</text>
+    </g>
+  </g>
+
+  <!-- Right Decorative Architecture Nodes -->
+  <g transform="translate(1000, 75)" opacity="0.65">
+    <circle cx="80" cy="40" r="28" fill="#1E293B" stroke="#38BDF8" stroke-width="1.5" />
+    <text x="80" y="44" fill="#38BDF8" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">AZURE</text>
+
+    <line x1="80" y1="68" x2="40" y2="120" stroke="#334155" stroke-dasharray="3,3" stroke-width="1.5" />
+    <line x1="80" y1="68" x2="120" y2="120" stroke="#334155" stroke-dasharray="3,3" stroke-width="1.5" />
+
+    <circle cx="40" cy="120" r="24" fill="#1E293B" stroke="#22D3EE" stroke-width="1.5" />
+    <text x="40" y="124" fill="#22D3EE" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">AWS</text>
+
+    <circle cx="120" cy="120" r="24" fill="#1E293B" stroke="#64748B" stroke-width="1.5" />
+    <text x="120" y="124" fill="#94A3B8" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">GCP</text>
+  </g>
+</svg>
+

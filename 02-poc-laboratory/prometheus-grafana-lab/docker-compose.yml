@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  emitter:
+    build:
+      context: src
+    container_name: lab-metric-emitter
+    ports:
+      - "8000:8000"
+    networks:
+      - lab-net
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: lab-prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    networks:
+      - lab-net
+
+  alertmanager:
+    image: prom/alertmanager:v0.27.0
+    container_name: lab-alertmanager
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+    ports:
+      - "9093:9093"
+    networks:
+      - lab-net
+
+networks:
+  lab-net:
+    driver: bridge
+

@@ -1,0 +1,15 @@
+environment        = "prod"
+location           = "eastus"
+workload_name      = "core"
+hub_address_space  = ["10.100.0.0/16"]
+spoke_address_space = ["10.101.0.0/16"]
+log_retention_days = 60
+
+tags = {
+  Environment        = "production"
+  ManagedBy          = "Terraform"
+  Owner              = "Cloud-Platform-Team"
+  CostCenter         = "CC-INFRA-1042"
+  SecurityCompliance = "CIS-Azure-v2.0"
+}
+

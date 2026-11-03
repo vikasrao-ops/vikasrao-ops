@@ -1,0 +1,38 @@
+name: "Observability Configuration Lint"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-yaml:
+    name: "Validate Prometheus & Grafana Configs"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Validate YAML files
+        run: |
+          python -c "
+          import yaml, glob
+          for f in glob.glob('prometheus/**/*.yml', recursive=True) + glob.glob('grafana/**/*.yml', recursive=True):
+              with open(f) as fp:
+                  yaml.safe_load(fp)
+                  print(f'Valid YAML: {f}')
+          "
+

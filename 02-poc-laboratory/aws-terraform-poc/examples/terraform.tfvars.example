@@ -1,0 +1,8 @@
+aws_region  = "us-east-1"
+environment = "poc"
+tags = {
+  Environment = "POC"
+  ManagedBy   = "Terraform"
+  Project     = "AWS-Terraform-POC"
+}
+

@@ -1,0 +1,47 @@
+{
+  "summary": {
+    "total_resources_scanned": 4,
+    "tagging_compliance_percentage": 50.0,
+    "total_monthly_waste_identified_usd": 83.65,
+    "annualized_projected_savings_usd": 1003.8
+  },
+  "tagging_violations": [
+    {
+      "resource_id": "vol-08492048291a",
+      "resource_type": "aws_ebs_volume",
+      "compliant": false,
+      "missing_tags": [
+        "CostCenter"
+      ]
+    },
+    {
+      "resource_id": "pip-core-unattached-01",
+      "resource_type": "azure_public_ip",
+      "compliant": false,
+      "missing_tags": [
+        "CostCenter",
+        "Owner"
+      ]
+    }
+  ],
+  "cost_optimization_findings": [
+    {
+      "resource_id": "vol-08492048291a",
+      "type": "aws_ebs_volume",
+      "reason": "Unattached persistent storage disk",
+      "monthly_savings_usd": 20.0
+    },
+    {
+      "resource_id": "pip-core-unattached-01",
+      "type": "azure_public_ip",
+      "reason": "Unassociated idle Public IP",
+      "monthly_savings_usd": 3.65
+    },
+    {
+      "resource_id": "vm-batch-worker-04",
+      "type": "azure_vm",
+      "reason": "Severely underutilized compute (Avg CPU 1.8%) - Recommend 50% downsize",
+      "monthly_savings_usd": 60.0
+    }
+  ]
+}

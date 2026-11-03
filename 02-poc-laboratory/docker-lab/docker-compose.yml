@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: src
+      dockerfile: Dockerfile.alpine
+    container_name: hardened-web
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    ports:
+      - "8080:8080"
+    networks:
+      - internal-net
+
+networks:
+  internal-net:
+    driver: bridge
+    internal: false
+

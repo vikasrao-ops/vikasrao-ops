@@ -1,0 +1,14 @@
+---
+- name: Apply Linux OS Security Baseline
+  hosts: all
+  become: yes
+
+  roles:
+    - security
+
+  handlers:
+    - name: Restart sshd
+      service:
+        name: sshd
+        state: restarted
+

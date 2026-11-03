@@ -1,25 +1,76 @@
 # ==============================================================================
-# .gitignore for vikasrao-ops/vikasrao-ops (Profile Portfolio Repository)
+# Master .gitignore for Vikas Rao Engineering Portfolio Workspace
 # ==============================================================================
 
-# OS & Editor files
-.DS_Store
+# OS & Editor generated files
 Thumbs.db
+[Dd]esktop.ini
+.DS_Store
 .idea/
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.swp
+*.swo
 
-# Separate standalone repositories (maintained in independent GitHub repos)
-01-flagship-projects/
-02-poc-laboratory/
-03-portfolio-website/
-05-publishing/
+# Node & Frontend Build Caches
+node_modules/
+.next/
+out/
+build/
+dist/
+.npm
+*.log
+.turbo
 
-# Sensitive data, keys, credentials
-*.pem
-*.key
-*.token
-*.pat
+# Terraform State & Local Cache
+**/.terraform/
 *.tfstate
 *.tfstate.*
-node_modules/
-.env*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+.terraform.lock.hcl
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets, Keys, Certificates & Tokens
+*.pem
+*.key
+*.pub
+*.pfx
+*.p12
+*.crt
+*.cert
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.token
+*.pat
+secrets.yaml
+secrets.json
+
+# Local Prometheus / Grafana storage dumps
+prometheus_data/
+grafana_data/

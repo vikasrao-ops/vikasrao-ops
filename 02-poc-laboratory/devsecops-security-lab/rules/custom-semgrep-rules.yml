@@ -1,0 +1,20 @@
+rules:
+  - id: insecure-flask-debug-mode
+    patterns:
+      - pattern: app.run(..., debug=True, ...)
+    message: "Flask app detected running with debug=True in code. This permits arbitrary remote code execution via debugger."
+    languages: [python]
+    severity: ERROR
+    metadata:
+      cwe: "CWE-489: Active Debug Code"
+      owasp: "A05:2021 - Security Misconfiguration"
+
+  - id: hardcoded-secret-assignment
+    patterns:
+      - pattern-either:
+          - pattern: $X = "ghp_..."
+          - pattern: $X = "AKIA..."
+    message: "Hardcoded secret token detected in variable assignment."
+    languages: [python]
+    severity: ERROR
+

@@ -25,3 +25,4 @@ Every Terraform project within this workspace adheres to the standard file layou
 
 ## 4. Secret Prevention Standard
 * **No Hardcoded Tokens:** Under no circumstances should Azure client secrets, AWS secret keys, passwords, or personal access tokens (PAT) be committed to version control.
+

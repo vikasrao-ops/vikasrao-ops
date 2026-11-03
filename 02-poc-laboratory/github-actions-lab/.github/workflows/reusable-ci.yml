@@ -1,0 +1,33 @@
+name: "Reusable CI Workflow"
+
+on:
+  workflow_call:
+    inputs:
+      target-environment:
+        required: true
+        type: string
+      run-security-scan:
+        required: false
+        type: boolean
+        default: true
+    secrets:
+      DEPLOY_TOKEN:
+        required: false
+
+jobs:
+  execute-reusable-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Initialize Standard Tools
+        uses: ./.github/actions/setup-tools
+        with:
+          terraform-version: "1.8.0"
+
+      - name: Execute Build Logic
+        run: |
+          echo "Executing pipeline for environment: ${{ inputs.target-environment }}"
+          echo "Security scanning enabled: ${{ inputs.run-security-scan }}"
+

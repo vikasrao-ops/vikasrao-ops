@@ -1,0 +1,40 @@
+name: "Helm Chart & Kubernetes Manifest Lint"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: "Helm Lint & Kubeconform Scan"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.14.0
+
+      - name: Lint Helm Chart
+        run: |
+          helm lint helm/
+
+      - name: Helm Template Validation
+        run: |
+          helm template test-workload helm/ -f examples/values-production.yaml > rendered-output.yaml
+
+      - name: Validate with Kubeconform
+        uses: yannh/kubeconform-action@v0.8.2
+        with:
+          files: "rendered-output.yaml manifests/*.yaml"
+          kubernetes_version: "1.29.0"
+          strict: true
+

@@ -1,0 +1,13 @@
+aws_region   = "us-east-1"
+environment  = "prod"
+project_name = "secure-core"
+vpc_cidr     = "10.20.0.0/16"
+
+tags = {
+  Environment = "production"
+  ManagedBy   = "Terraform"
+  Project     = "AWS-Secure-Infrastructure"
+  Owner       = "Vikas-Rao"
+  Compliance  = "CIS-AWS-Benchmark-v1.4"
+}
+

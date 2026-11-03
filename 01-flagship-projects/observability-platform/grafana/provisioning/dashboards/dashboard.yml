@@ -1,0 +1,12 @@
+apiVersion: 1
+
+providers:
+  - name: "Enterprise Observability Dashboards"
+    orgId: 1
+    folder: "Production Overview"
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    options:
+      path: /var/lib/grafana/dashboards
+

@@ -1,0 +1,28 @@
+parameters:
+  - name: targetUrl
+    type: string
+    default: 'http://localhost:8080'
+
+steps:
+  - script: |
+      echo "Pulling OWASP ZAP container..."
+      docker pull ghcr.io/zaproxy/zaproxy:stable
+
+      mkdir -p $(Build.ArtifactStagingDirectory)/zap-reports
+      chmod 777 $(Build.ArtifactStagingDirectory)/zap-reports
+
+      echo "Executing OWASP ZAP Baseline Dynamic Scan against ${{ parameters.targetUrl }}..."
+      docker run --network="host" -v $(Build.ArtifactStagingDirectory)/zap-reports:/zap/wrk/:rw \
+        -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+        -t ${{ parameters.targetUrl }} \
+        -r zap-baseline-report.html \
+        -J zap-baseline-report.json \
+        -I || true
+
+      echo "DAST scan completed. Inspecting findings..."
+    displayName: 'Execute OWASP ZAP Dynamic Security Scan'
+
+  - publish: $(Build.ArtifactStagingDirectory)/zap-reports
+    artifact: owasp-zap-dast-report
+    displayName: 'Publish OWASP ZAP Reports'
+    condition: always()

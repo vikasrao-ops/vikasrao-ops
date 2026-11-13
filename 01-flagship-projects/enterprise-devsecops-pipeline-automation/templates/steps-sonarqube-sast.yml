@@ -1,0 +1,30 @@
+parameters:
+  - name: serviceConnection
+    type: string
+  - name: projectKey
+    type: string
+
+steps:
+  - task: SonarQubePrepare@5
+    displayName: 'Prepare SonarQube Analysis'
+    inputs:
+      SonarQube: ${{ parameters.serviceConnection }}
+      scannerMode: 'CLI'
+      configMode: 'file'
+      configFile: 'sonar-project.properties'
+      extraProperties: |
+        sonar.projectKey=${{ parameters.projectKey }}
+
+  - script: |
+      # Fallback or standalone execution when SonarQube CLI agent is run locally or in container
+      echo "Running SonarQube Static Application Security Testing..."
+    displayName: 'Execute SonarQube Scanner'
+
+  - task: SonarQubeAnalyze@5
+    displayName: 'Run SonarQube Code & Security Analysis'
+    continueOnError: false
+
+  - task: SonarQubePublish@5
+    displayName: 'Publish Quality Gate Result'
+    inputs:
+      pollingTimeoutSec: '300'

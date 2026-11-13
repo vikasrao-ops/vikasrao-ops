@@ -1,0 +1,26 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform/
+.terraform.lock.hcl
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Node & Build artifacts
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+build/
+*.tar.gz
+*.zip
+
+# OS and Editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

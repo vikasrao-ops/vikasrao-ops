@@ -1,0 +1,16 @@
+node_modules/
+npm-debug.log
+yarn-error.log
+coverage/
+.scannerwork/
+*.log
+*.tar.gz
+*.xml
+*.json
+!package.json
+!package-lock.json
+!trivy.yaml
+!sonar-project.properties
+.DS_Store
+.idea/
+.vscode/

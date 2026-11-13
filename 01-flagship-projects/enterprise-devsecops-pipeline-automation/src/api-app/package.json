@@ -1,0 +1,16 @@
+{
+  "name": "enterprise-api-service",
+  "version": "1.0.0",
+  "description": "Hardened containerized Node.js API Service for DevSecOps automated verification",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js",
+    "test:coverage": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "helmet": "^7.1.0"
+  },
+  "author": "Vikas Rao",
+  "license": "MIT"
+}

@@ -1,0 +1,18 @@
+# Aqua Trivy Security Scanner Policy
+scan:
+  scanners:
+    - vuln
+    - secret
+    - misconfig
+
+severity:
+  - HIGH
+  - CRITICAL
+
+vulnerability:
+  type:
+    - os
+    - library
+
+exit-code: 1
+ignore-unfixed: false

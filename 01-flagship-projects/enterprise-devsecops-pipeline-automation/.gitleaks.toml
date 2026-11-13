@@ -1,0 +1,11 @@
+title = "Gitleaks DevSecOps Baseline Configuration"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Permitted non-sensitive test tokens and fixture mocks"
+paths = [
+  '''src/api-app/test/.*''',
+  '''coverage/.*''',
+]

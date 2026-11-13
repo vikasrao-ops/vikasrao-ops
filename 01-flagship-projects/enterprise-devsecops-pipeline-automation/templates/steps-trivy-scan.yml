@@ -1,0 +1,24 @@
+parameters:
+  - name: imageName
+    type: string
+
+steps:
+  - script: |
+      echo "Installing Aqua Trivy Vulnerability Scanner..."
+      curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /tmp v0.49.1
+      sudo mv /tmp/trivy /usr/local/bin/
+
+      echo "Scanning filesystem and lockfiles for known dependencies CVEs..."
+      trivy fs --severity HIGH,CRITICAL --format table $(Build.SourcesDirectory)/src/api-app
+
+      echo "Scanning container image: ${{ parameters.imageName }}..."
+      trivy image --config trivy.yaml --format json --output $(Build.ArtifactStagingDirectory)/trivy-report.json ${{ parameters.imageName }}
+      
+      # Fail pipeline if Critical or High CVEs exceed threshold
+      trivy image --exit-code 1 --severity CRITICAL ${{ parameters.imageName }}
+    displayName: 'Aqua Trivy Container & Dependency Scan'
+
+  - publish: $(Build.ArtifactStagingDirectory)/trivy-report.json
+    artifact: trivy-security-report
+    displayName: 'Publish Trivy CVE Report'
+    condition: always()

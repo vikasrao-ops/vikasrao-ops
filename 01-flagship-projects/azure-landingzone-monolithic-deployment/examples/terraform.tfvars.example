@@ -1,0 +1,22 @@
+environment                 = "prod"
+location                    = "eastus"
+project_name                = "monolith"
+hub_vnet_address_space      = ["10.0.0.0/16"]
+hub_firewall_subnet_prefix  = "10.0.1.0/24"
+hub_bastion_subnet_prefix   = "10.0.2.0/24"
+hub_mgmt_subnet_prefix      = "10.0.3.0/24"
+spoke_vnet_address_space    = ["10.1.0.0/16"]
+app_subnet_prefix           = "10.1.1.0/24"
+data_subnet_prefix          = "10.1.2.0/24"
+keyvault_subnet_prefix      = "10.1.3.0/24"
+appgw_subnet_prefix         = "10.1.4.0/24"
+vm_admin_username           = "azureuser"
+vm_size                     = "Standard_B2ms"
+
+tags = {
+  Environment = "prod"
+  Project     = "monolithic-app"
+  ManagedBy   = "Terraform"
+  Compliance  = "CIS-Azure-Baseline"
+  CostCenter  = "CC-1042"
+}

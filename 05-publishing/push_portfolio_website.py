@@ -60,3 +60,4 @@ try:
 
 finally:
     shutil.rmtree(temp_dir, ignore_errors=True)
+

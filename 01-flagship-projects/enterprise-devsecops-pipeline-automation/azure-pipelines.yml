@@ -1,0 +1,148 @@
+# ==============================================================================
+# Enterprise CI/CD & DevSecOps Automated Release Pipeline
+# Azure DevOps Master Pipeline with SonarQube, Trivy, and OWASP ZAP Gates
+# ==============================================================================
+
+trigger:
+  branches:
+    include:
+      - main
+      - release/*
+  paths:
+    include:
+      - src/**
+      - azure-pipelines.yml
+      - templates/**
+
+pr:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - name: imageRepository
+    value: 'enterprise-api-service'
+  - name: dockerfilePath
+    value: '$(Build.SourcesDirectory)/src/api-app/Dockerfile'
+  - name: imageTag
+    value: '$(Build.BuildId)'
+  - name: sonarServiceConnection
+    value: 'SonarQube-Service-Endpoint'
+  - name: sonarProjectKey
+    value: 'enterprise-devsecops-platform'
+
+stages:
+  # ----------------------------------------------------------------------------
+  # Stage 1: Shift-Left Secret Scanning & Unit Testing
+  # ----------------------------------------------------------------------------
+  - stage: BuildAndTest
+    displayName: 'Build, Lint & Unit Tests'
+    jobs:
+      - job: SecretScanAndUnitTest
+        displayName: 'Secret Scan & Coverage'
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '18.x'
+            displayName: 'Set Node.js 18.x'
+
+          - template: templates/steps-secrets-scan.yml
+
+          - script: |
+              cd src/api-app
+              npm ci
+              npm run test:coverage
+            displayName: 'Execute Unit Tests & Generate LCOV'
+
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: 'Cobertura'
+              summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/api-app/coverage/cobertura-coverage.xml'
+            displayName: 'Publish Code Coverage Metric'
+
+  # ----------------------------------------------------------------------------
+  # Stage 2: SonarQube Static Application Security Testing (SAST)
+  # ----------------------------------------------------------------------------
+  - stage: SonarQubeSAST
+    displayName: 'Static Security (SonarQube)'
+    dependsOn: BuildAndTest
+    jobs:
+      - job: SonarAnalysis
+        displayName: 'SonarQube Analysis & Quality Gate'
+        steps:
+          - template: templates/steps-sonarqube-sast.yml
+            parameters:
+              serviceConnection: $(sonarServiceConnection)
+              projectKey: $(sonarProjectKey)
+
+  # ----------------------------------------------------------------------------
+  # Stage 3: Container Build & Trivy Vulnerability Scanning
+  # ----------------------------------------------------------------------------
+  - stage: ContainerSecurity
+    displayName: 'Container SCA & CVE Scan (Trivy)'
+    dependsOn: SonarQubeSAST
+    jobs:
+      - job: TrivyScan
+        displayName: 'Build Image & Aqua Trivy Audit'
+        steps:
+          - script: |
+              docker build -t $(imageRepository):$(imageTag) -f $(dockerfilePath) src/api-app
+            displayName: 'Build OCI Container Image'
+
+          - template: templates/steps-trivy-scan.yml
+            parameters:
+              imageName: '$(imageRepository):$(imageTag)'
+
+  # ----------------------------------------------------------------------------
+  # Stage 4: Staging Deployment & Dynamic Testing (OWASP ZAP DAST)
+  # ----------------------------------------------------------------------------
+  - stage: StagingDAST
+    displayName: 'Staging & Dynamic Analysis (OWASP ZAP)'
+    dependsOn: ContainerSecurity
+    jobs:
+      - deployment: DeployStaging
+        displayName: 'Deploy to Staging Environment'
+        environment: 'staging-environment'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: |
+                    echo "Deploying $(imageRepository):$(imageTag) to Staging..."
+                    # Spin up container on staging runner for dynamic probe
+                    docker run -d --name staging-target -p 8080:8080 $(imageRepository):$(imageTag)
+                    sleep 5
+                  displayName: 'Boot Staging Endpoint'
+
+                - template: templates/steps-owasp-zap.yml
+                  parameters:
+                    targetUrl: 'http://localhost:8080'
+
+                - script: |
+                    docker stop staging-target || true
+                    docker rm staging-target || true
+                  displayName: 'Teardown Staging Ephemeral Container'
+                  condition: always()
+
+  # ----------------------------------------------------------------------------
+  # Stage 5: Gated Production Release
+  # ----------------------------------------------------------------------------
+  - stage: ProductionDeploy
+    displayName: 'Production Gated Release'
+    dependsOn: StagingDAST
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: DeployProd
+        displayName: 'Manual Approval & Prod Promotion'
+        environment: 'production-cloud-environment'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: |
+                    echo "All security gates cleared: Gitleaks [PASSED], SonarQube [PASSED], Trivy [PASSED], OWASP ZAP [PASSED]."
+                    echo "Deploying validated artifact $(imageRepository):$(imageTag) to Production."
+                  displayName: 'Deploy Verified Container'

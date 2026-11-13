@@ -1,0 +1,9 @@
+variable "project_name" { type = string }
+variable "environment" { type = string }
+variable "location" { type = string }
+variable "spoke_vnet_cidr" { type = list(string) }
+variable "spoke_subnets" { type = map(string) }
+variable "hub_rg_name" { type = string }
+variable "hub_vnet_id" { type = string }
+variable "hub_vnet_name" { type = string }
+variable "tags" { type = map(string) }

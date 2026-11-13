@@ -1,0 +1,53 @@
+name: 'Terraform Azure Governance & OPA Policy Gate'
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'infrastructure/**'
+      - 'policy/**'
+  push:
+    branches: [main]
+    paths:
+      - 'infrastructure/**'
+      - 'policy/**'
+
+jobs:
+  policy-evaluation:
+    name: 'Lint & OPA Policy Evaluation'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.7
+
+      - name: Install Conftest
+        run: |
+          wget -q https://github.com/open-policy-agent/conftest/releases/download/v0.45.0/conftest_0.45.0_Linux_x86_64.tar.gz
+          tar -xzf conftest_0.45.0_Linux_x86_64.tar.gz
+          sudo mv conftest /usr/local/bin/
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+        working-directory: infrastructure
+
+      - name: Terraform Init & Validate
+        run: |
+          terraform init -backend=false
+          terraform validate
+        working-directory: infrastructure
+
+      - name: Generate Speculative Plan in JSON
+        run: |
+          terraform plan -var-file="../examples/terraform.tfvars.example" -out=tfplan.bin
+          terraform show -json tfplan.bin > tfplan.json
+        working-directory: infrastructure
+
+      - name: Evaluate OPA Rego Policies
+        run: |
+          echo "### Running Open Policy Agent (OPA) Guardrails..."
+          conftest test infrastructure/tfplan.json --policy policy/ --output table

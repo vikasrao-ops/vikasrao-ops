@@ -1,0 +1,16 @@
+environment        = "prod"
+location           = "eastus"
+project_name       = "aksmicro"
+vnet_cidr          = ["10.240.0.0/16"]
+aks_subnet_cidr    = "10.240.0.0/20"
+kubernetes_version = "1.28.3"
+system_node_count  = 2
+user_node_count    = 3
+vm_size            = "Standard_D2s_v5"
+
+tags = {
+  Environment = "prod"
+  Project     = "aks-microservices-pipeline"
+  ManagedBy   = "Terraform"
+  Tier        = "ContainerPlatform"
+}

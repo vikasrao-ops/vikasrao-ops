@@ -1,0 +1,16 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform/
+.terraform.lock.hcl
+
+# Node & Containers
+node_modules/
+*.log
+
+# System & IDE
+.DS_Store
+.idea/
+.vscode/

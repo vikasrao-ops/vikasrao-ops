@@ -1,0 +1,15 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform/
+.terraform.lock.hcl
+
+# System & CI
+.DS_Store
+.idea/
+.vscode/
+*.log
+*.xml
+*.bin

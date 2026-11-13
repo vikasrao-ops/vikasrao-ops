@@ -1,0 +1,104 @@
+# ==============================================================================
+# AKS Microservices Automated CI/CD Pipeline
+# Build, Security Scan (Aqua Trivy), Helm Package & Deploy to AKS
+# ==============================================================================
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - src/orders-service/**
+      - charts/microservice/**
+      - azure-pipelines/azure-pipelines.yml
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - name: acrName
+    value: 'craksprod.azurecr.io'
+  - name: imageName
+    value: 'orders-service'
+  - name: imageTag
+    value: '$(Build.BuildId)'
+  - name: azureServiceConnection
+    value: 'sc-aks-prod-connection'
+  - name: aksClusterName
+    value: 'aks-aksmicro-prod'
+  - name: aksResourceGroup
+    value: 'rg-aksmicro-prod'
+
+stages:
+  # ----------------------------------------------------------------------------
+  # Stage 1: Build, Unit Test & Trivy Vulnerability Scan
+  # ----------------------------------------------------------------------------
+  - stage: BuildAndScan
+    displayName: 'Build & Security Audit'
+    jobs:
+      - job: ContainerBuild
+        displayName: 'Docker Build & Aqua Trivy Scan'
+        steps:
+          - script: |
+              cd src/orders-service
+              npm test
+            displayName: 'Run Unit Tests'
+
+          - script: |
+              docker build -t $(acrName)/$(imageName):$(imageTag) src/orders-service
+            displayName: 'Build Microservice OCI Image'
+
+          - script: |
+              curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /tmp
+              /tmp/trivy image --severity HIGH,CRITICAL --exit-code 1 $(acrName)/$(imageName):$(imageTag)
+            displayName: 'Run Trivy Container Vulnerability Scan'
+
+  # ----------------------------------------------------------------------------
+  # Stage 2: Push Image to Azure Container Registry
+  # ----------------------------------------------------------------------------
+  - stage: PublishArtifacts
+    displayName: 'Push to Registry'
+    dependsOn: BuildAndScan
+    condition: succeeded()
+    jobs:
+      - job: PushACR
+        displayName: 'Push to ACR'
+        steps:
+          - task: AzureCLI@2
+            displayName: 'Push Container to ACR'
+            inputs:
+              azureSubscription: $(azureServiceConnection)
+              scriptType: 'bash'
+              inlineScript: |
+                az acr login --name $(acrName)
+                docker push $(acrName)/$(imageName):$(imageTag)
+
+  # ----------------------------------------------------------------------------
+  # Stage 3: Helm Deployment to Azure Kubernetes Service
+  # ----------------------------------------------------------------------------
+  - stage: DeployToAKS
+    displayName: 'Deploy to AKS'
+    dependsOn: PublishArtifacts
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: HelmDeploy
+        environment: 'aks-production-cluster'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzureCLI@2
+                  displayName: 'Deploy via Helm 3'
+                  inputs:
+                    azureSubscription: $(azureServiceConnection)
+                    scriptType: 'bash'
+                    inlineScript: |
+                      az aks get-credentials --resource-group $(aksResourceGroup) --name $(aksClusterName) --overwrite-existing
+                      helm upgrade --install orders-service charts/microservice \
+                        --namespace production \
+                        --create-namespace \
+                        --set image.repository=$(acrName)/$(imageName) \
+                        --set image.tag=$(imageTag) \
+                        --wait --timeout 300s

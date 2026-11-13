@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """
-Automated GitHub Publisher for the 3 Flagship Projects:
-1. azure-landingzone-monolithic-deployment
-2. enterprise-devsecops-pipeline-automation
-3. terraform-azure-governance-atlantis
-
-Author: Vikas Rao (Vikas98Rao)
+Automated GitHub Publisher for Flagship Projects to vikasrao-ops
+Projects:
+1. azure-devsecops-landingzone
+2. terraform-azure-governance
+3. aks-microservices-pipeline
 """
 
 import os
@@ -18,69 +17,48 @@ import urllib.request
 import urllib.error
 import time
 
-def get_github_auth():
-    """Retrieve username and token from Git Credential Manager."""
-    p = subprocess.run(
-        ["git", "credential", "fill"],
-        input="protocol=https\nhost=github.com\n\n",
-        capture_output=True,
-        text=True
-    )
-    username = "Vikas98Rao"
-    token = None
-    for line in p.stdout.splitlines():
-        if line.startswith("username="):
-            username = line.split("=", 1)[1].strip()
-        elif line.startswith("password="):
-            token = line.split("=", 1)[1].strip()
-            
-    if not token:
-        # Check environment variable fallback
-        token = os.environ.get("GITHUB_PAT") or os.environ.get("GITHUB_TOKEN")
-        
-    if not token:
-        print("[ERROR] Could not extract GitHub token from Git Credential Manager or environment.", flush=True)
-        sys.exit(1)
-        
-    return username, token
+GITHUB_USER = os.environ.get("GITHUB_USER", "vikasrao-ops")
+GITHUB_TOKEN = os.environ.get("GITHUB_PAT")
 
-GITHUB_USER, GITHUB_TOKEN = get_github_auth()
+if not GITHUB_TOKEN:
+    print("[ERROR] Environment variable GITHUB_PAT is required.")
+    sys.exit(1)
 
 HEADERS = {
-    "Authorization": f"Bearer {GITHUB_TOKEN}",
+    "Authorization": f"token {GITHUB_TOKEN}",
     "Accept": "application/vnd.github.v3+json",
     "User-Agent": GITHUB_USER
 }
 
 PROJECTS = [
     {
-        "name": "azure-landingzone-monolithic-deployment",
-        "title": "Azure Landing Zone & Secure Monolithic Application Deployment",
-        "description": "Azure Landing Zone & Secure Monolithic Application Deployment (Terraform · Azure DevOps · Azure Networking · Key Vault)",
-        "path": "01-flagship-projects/azure-landingzone-monolithic-deployment",
+        "name": "azure-devsecops-landingzone",
+        "title": "Azure DevSecOps Landing Zone",
+        "description": "Production-ready Microsoft Azure Hub-and-Spoke Landing Zone with Modular Terraform & Azure DevOps DevSecOps Pipeline",
+        "path": "01-flagship-projects/azure-devsecops-landingzone",
         "topics": [
-            "azure", "terraform", "landing-zone", "azure-devops",
-            "key-vault", "zero-trust", "monolith", "cloud-adoption-framework"
+            "azure", "terraform", "landing-zone", "devsecops",
+            "azure-devops", "cloud-adoption-framework", "checkov", "security"
         ]
     },
     {
-        "name": "enterprise-devsecops-pipeline-automation",
-        "title": "Enterprise CI/CD & DevSecOps Pipeline Automation",
-        "description": "Enterprise CI/CD & DevSecOps Pipeline Automation (Azure DevOps · SonarQube · Trivy · OWASP ZAP)",
-        "path": "01-flagship-projects/enterprise-devsecops-pipeline-automation",
+        "name": "terraform-azure-governance",
+        "title": "Terraform Azure Governance & Policy-as-Code",
+        "description": "Automated Azure Cloud Governance and Policy-as-Code with Terraform, Open Policy Agent (OPA/Rego) & GitHub Actions",
+        "path": "01-flagship-projects/terraform-azure-governance",
         "topics": [
-            "devsecops", "azure-devops", "sonarqube", "trivy",
-            "owasp-zap", "sast", "dast", "security-pipeline"
+            "terraform", "azure", "governance", "opa",
+            "rego", "conftest", "policy-as-code", "github-actions"
         ]
     },
     {
-        "name": "terraform-azure-governance-atlantis",
-        "title": "Terraform-Based Azure Infrastructure Automation & Governance",
-        "description": "Terraform-Based Azure Infrastructure Automation & Governance (Terraform · GitHub Actions · Atlantis · OPA)",
-        "path": "01-flagship-projects/terraform-azure-governance-atlantis",
+        "name": "aks-microservices-pipeline",
+        "title": "AKS Microservices CI/CD Pipeline",
+        "description": "Cloud-Native Microservices on Azure Kubernetes Service (AKS) with Terraform, Helm 3, and Azure DevOps CI/CD Pipeline",
+        "path": "01-flagship-projects/aks-microservices-pipeline",
         "topics": [
-            "terraform", "github-actions", "atlantis", "opa",
-            "policy-as-code", "rego", "conftest", "azure-governance"
+            "kubernetes", "aks", "helm", "microservices",
+            "azure-devops", "trivy", "ci-cd", "cloud-native"
         ]
     }
 ]
@@ -128,7 +106,6 @@ def ensure_repository(project):
         time.sleep(2)
     else:
         print(f"    [OK] Repository {name} exists.", flush=True)
-        # Update description if needed
         make_request(check_url, method="PATCH", data={"description": project["description"]})
 
     # Set repository topics
@@ -148,7 +125,7 @@ def push_project(project, workspace_root):
         def ignore_filter(path, names):
             ignored = []
             for item in names:
-                if item in [".git", "node_modules", ".terraform", "__pycache__", ".scannerwork"]:
+                if item in [".git", "node_modules", ".terraform", "__pycache__"]:
                     ignored.append(item)
                 elif item.endswith((".tfstate", ".tfstate.backup", ".log")):
                     ignored.append(item)
@@ -162,7 +139,6 @@ def push_project(project, workspace_root):
             else:
                 shutil.copy2(s, d)
 
-        # Add LICENSE if missing
         lic_dest = os.path.join(temp_dir, "LICENSE")
         if not os.path.exists(lic_dest):
             lic_src = os.path.join(workspace_root, "05-publishing", "templates", "LICENSE")
@@ -197,7 +173,7 @@ def push_project(project, workspace_root):
 def main():
     root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     print("=" * 65, flush=True)
-    print(f" Publishing 3 Flagship Projects to GitHub Account: {GITHUB_USER}")
+    print(f" Publishing 3 Clean Flagships to GitHub Account: {GITHUB_USER}")
     print("=" * 65, flush=True)
 
     success_list = []

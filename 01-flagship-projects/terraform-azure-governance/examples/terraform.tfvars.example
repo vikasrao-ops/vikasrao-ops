@@ -1,0 +1,17 @@
+environment  = "prod"
+location     = "eastus"
+project_name = "azgov"
+vnet_cidr    = ["10.200.0.0/16"]
+
+subnet_cidrs = {
+  workload = "10.200.1.0/24"
+  data     = "10.200.2.0/24"
+}
+
+tags = {
+  Environment = "prod"
+  Owner       = "vikas.rao"
+  Project     = "terraform-azure-governance"
+  CostCenter  = "GOV-770"
+  ManagedBy   = "Terraform"
+}

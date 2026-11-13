@@ -1,0 +1,9 @@
+apiVersion: v2
+name: orders-microservice
+description: Enterprise Microservice Helm Chart with HPA, Ingress & Zero-Trust NetworkPolicy
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+maintainers:
+  - name: Vikas Rao
+    email: contact.vikasrao.ops@gmail.com

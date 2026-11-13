@@ -1,0 +1,13 @@
+{
+  "name": "orders-service",
+  "version": "1.0.0",
+  "description": "Enterprise cloud-native microservice deployed to Azure Kubernetes Service",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {},
+  "author": "Vikas Rao",
+  "license": "MIT"
+}

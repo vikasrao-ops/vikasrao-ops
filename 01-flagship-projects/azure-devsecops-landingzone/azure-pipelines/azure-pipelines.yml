@@ -1,0 +1,128 @@
+# ==============================================================================
+# Azure DevSecOps Landing Zone CI/CD Release Pipeline
+# Multi-Stage Automated Validation, Security Scanning & Deployment
+# ==============================================================================
+
+trigger:
+  branches:
+    include:
+      - main
+      - release/*
+  paths:
+    include:
+      - infrastructure/**
+      - azure-pipelines/**
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - name: azureServiceConnection
+    value: 'sc-azure-landingzone-prod'
+  - name: workingDirectory
+    value: '$(System.DefaultWorkingDirectory)/infrastructure'
+  - name: terraformVersion
+    value: '1.5.7'
+
+stages:
+  # ----------------------------------------------------------------------------
+  # Stage 1: Shift-Left Linting, Formatting & Checkov IaC Security
+  # ----------------------------------------------------------------------------
+  - stage: SecurityValidation
+    displayName: 'Lint & IaC Security'
+    jobs:
+      - job: StaticScan
+        displayName: 'Format, Validate & Checkov'
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.10'
+            displayName: 'Set Python 3.10'
+
+          - script: |
+              pip install checkov
+              wget -q https://releases.hashicorp.com/terraform/$(terraformVersion)/terraform_$(terraformVersion)_linux_amd64.zip
+              unzip -q terraform_$(terraformVersion)_linux_amd64.zip && sudo mv terraform /usr/local/bin/
+            displayName: 'Install Terraform & Checkov'
+
+          - script: |
+              terraform fmt -check -recursive
+            workingDirectory: $(workingDirectory)
+            displayName: 'Enforce Terraform Formatting'
+
+          - task: AzureCLI@2
+            displayName: 'Terraform Validate'
+            inputs:
+              azureSubscription: $(azureServiceConnection)
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              workingDirectory: $(workingDirectory)
+              inlineScript: |
+                terraform init -backend=false
+                terraform validate
+
+          - script: |
+              checkov -d $(workingDirectory) --framework terraform --output junitxml --output-file-path $(System.DefaultWorkingDirectory)/checkov-results.xml || true
+            displayName: 'Run Checkov CIS Security Audit'
+
+          - task: PublishTestResults@2
+            displayName: 'Publish Checkov Report'
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '$(System.DefaultWorkingDirectory)/checkov-results.xml'
+
+  # ----------------------------------------------------------------------------
+  # Stage 2: Speculative Terraform Plan
+  # ----------------------------------------------------------------------------
+  - stage: TerraformPlan
+    displayName: 'Speculative Plan'
+    dependsOn: SecurityValidation
+    condition: succeeded()
+    jobs:
+      - job: GeneratePlan
+        displayName: 'Generate Execution Plan'
+        steps:
+          - task: AzureCLI@2
+            displayName: 'Run Terraform Plan'
+            inputs:
+              azureSubscription: $(azureServiceConnection)
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              workingDirectory: $(workingDirectory)
+              inlineScript: |
+                terraform init
+                terraform plan -var-file="../examples/terraform.tfvars.example" -out=$(Build.ArtifactStagingDirectory)/tfplan.binary
+
+          - publish: $(Build.ArtifactStagingDirectory)/tfplan.binary
+            artifact: tfplan
+            displayName: 'Upload Plan Artifact'
+
+  # ----------------------------------------------------------------------------
+  # Stage 3: Gated Production Apply
+  # ----------------------------------------------------------------------------
+  - stage: ProductionApply
+    displayName: 'Deploy Landing Zone'
+    dependsOn: TerraformPlan
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: ApplyGate
+        displayName: 'Gated Apply'
+        environment: 'landingzone-production'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - download: current
+                  artifact: tfplan
+
+                - task: AzureCLI@2
+                  displayName: 'Apply Approved Plan'
+                  inputs:
+                    azureSubscription: $(azureServiceConnection)
+                    scriptType: 'bash'
+                    scriptLocation: 'inlineScript'
+                    workingDirectory: $(workingDirectory)
+                    inlineScript: |
+                      terraform init
+                      terraform apply -auto-approve $(Pipeline.Workspace)/tfplan/tfplan.binary

@@ -9,9 +9,9 @@ This index catalogues all flagship projects, proof-of-concept laboratories, and 
 | Project Repository | Domain | Tech Stack | Production Highlights |
 | :--- | :--- | :--- | :--- |
 | **`azure-enterprise-landing-zone`** | Cloud Platform (Primary) | Azure, Terraform, Azure Policy | Hub-and-Spoke VNet peering, Azure Firewall, Log Analytics workspace, Private Endpoints, RBAC, Policy compliance |
-| **`azure-landingzone-monolithic-deployment`** | Azure Enterprise Monolith | Terraform, Azure DevOps, Key Vault | Hub-and-Spoke Landing Zone hosting a secure monolithic app in private subnet with Key Vault Private Link and Managed Identity |
-| **`enterprise-devsecops-pipeline-automation`** | Enterprise DevSecOps CI/CD | Azure DevOps, SonarQube, Trivy, OWASP ZAP | End-to-end multi-stage pipeline embedding Gitleaks secret detection, SonarQube SAST, Aqua Trivy container SCA, and OWASP ZAP DAST |
-| **`terraform-azure-governance-atlantis`** | Cloud Governance & GitOps | Terraform, GitHub Actions, Atlantis, OPA | Pull-request automation via Atlantis GitOps with Open Policy Agent (OPA/Rego) guardrails for Azure infrastructure compliance |
+| **`azure-devsecops-landingzone`** | Azure DevSecOps Landing Zone | Terraform, Azure DevOps, WAF v2, Key Vault | Hub-and-Spoke network isolation, Private Endpoints, zero-trust secrets, and Checkov-gated CI/CD |
+| **`terraform-azure-governance`** | Cloud Governance & Policy-as-Code | Terraform, GitHub Actions, OPA, Rego | Open Policy Agent (OPA/Rego) guardrails enforcing tagging, allowed regions, and perimeter security in CI |
+| **`aks-microservices-pipeline`** | Cloud-Native Microservices & GitOps | AKS, Terraform, Helm 3, Azure DevOps, Trivy | Production AKS cluster with Azure CNI, parameterized Helm 3 chart (HPA/NetPol), and Trivy-gated deployment |
 | **`aws-secure-infrastructure`** | Cloud Platform (Hands-on) | AWS, Terraform, KMS | Multi-AZ VPC (public/private/db), EC2 Bastion host, S3 SSE-KMS, IAM boundary policies, CloudWatch |
 | **`devsecops-platform`** | Security Automation | GitHub Actions, Trivy, Checkov | Shift-Left pipeline with Gitleaks secret scan, SAST, Checkov IaC scanner, Syft SBOM generation, Trivy container audit |
 | **`kubernetes-platform`** | Container Orchestration | Kubernetes, Helm, NGINX | Production Helm chart, Horizontal Pod Autoscaler (HPA), Ingress TLS termination, NetworkPolicies, Health probes |

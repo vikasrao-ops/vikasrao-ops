@@ -1,105 +1,194 @@
-<!-- HERO SECTION: DYNAMIC ANIMATED WAVING HEADER -->
+<!-- HERO SECTION: ANIMATED WAVING HEADER -->
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&custom_color_list=0,00D8FF,1,7B42BC&height=220&section=header&text=VIKAS%20RAO&fontSize=50&fontColor=ffffff&fontAlignY=36&desc=FORWARD%20DEPLOYED%20ENGINEER%20%7C%20PLATFORM%20%7C%20SRE%20%7C%20MULTI-CLOUD&descSize=15&descAlignY=58" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&custom_color_list=0,00D8FF,1,7B42BC&height=220&section=header&text=VIKAS%20RAO&fontSize=48&fontColor=ffffff&fontAlignY=36&desc=AZURE%20DEVOPS%20%7C%20DEVSECOPS%20%7C%20SRE%20%7C%20PLATFORM%20ENGINEER&descSize=15&descAlignY=58" width="100%" />
+
   <!-- Animated Typing Tagline -->
   <a href="https://github.com/vikasrao-ops">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=00D8FF&center=true&vCenter=true&width=750&lines=⚡+Enterprise+Azure+Landing+Zones+%26+Modular+Terraform;☸️+Kubernetes+(AKS)+Microservices+%26+SRE+Telemetry;🛡️+Zero-Trust+DevSecOps+Pipelines+(SonarQube+%2B+Trivy);🤖+AI-Augmented+Cloud+Automation+%26+FinOps;🚀+Ready+for+Immediate+Joining+(0-15+Days)" alt="Typing Tagline" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=00D8FF&center=true&vCenter=true&width=750&lines=⚡+Azure+DevOps+Engineer+%7C+Multi-Stage+YAML+Pipelines;🛡️+DevSecOps+Pipelines+(SonarQube%2C+Trivy%2C+Key+Vault);☸️+Kubernetes+(AKS)+Microservices+%26+SRE+Telemetry;📜+Modular+Infrastructure+as+Code+with+Terraform;🚀+Immediate+Joiner+(0-15+Days)+%7C+Ex-Cognizant+(2%2B+YOE)" alt="Typing Tagline" />
   </a>
+
   <br>
-  <!-- Status & Social Ribbon -->
+
+  <!-- Status & Quick Links Ribbon -->
   <p align="center">
     <a href="https://linkedin.com/in/vikasrao-connect"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
     <a href="mailto:vikasrao.connect@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+    <img src="https://img.shields.io/badge/Experience-2%2B_Years_(Cognizant)-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white" />
     <img src="https://img.shields.io/badge/Availability-Immediate_Joiner-00C853?style=for-the-badge&logo=clockify&logoColor=white" />
-    <img src="https://img.shields.io/badge/Focus-FDE_%2F_Platform_%2F_SRE-7B42BC?style=for-the-badge&logo=azure-pipelines&logoColor=white" />
   </p>
 </div>
+
 ---
-### 🧬 The Forward Deployed & Enterprise Mindset
-```
-                  "How To Engineer At Enterprise Scale?"
-                                     │
-           ┌─────────────────────────┴─────────────────────────┐
-           ▼                                                   ▼
-┌──────────────────────────────────────┐    ┌──────────────────────────────────────┐
-│       BUSINESS & VALUE LAYER         │    │       SYSTEMS & PLATFORM LAYER       │
-│ • Cloud Migration (Zero Downtime)    │    │ • Declarative IaC & GitOps (Terraform│
-│ • FinOps (Waste Elimination & RIs)   │    │ • Kubernetes Orchestration (AKS/K8s) │
-│ • 99.9% Uptime SLA & Rapid MTTR      │    │ • Shift-Left Security & OPA Policies │
-│ • Multi-Tier Governance & Compliance │    │ • Full-Stack Telemetry (Prom/Grafana)│
-└──────────────────────────────────────┘    └──────────────────────────────────────┘
-```
+
+### 👨‍💻 About Me
+
+I am an **Azure DevOps, DevSecOps, SRE, and Platform Engineer** with **2+ years of enterprise experience at Cognizant** delivering cloud infrastructure, automated CI/CD pipelines, and IaC solutions across pharmaceutical and UK retail client environments. 
+
+Through structured, hands-on engineering at **DevOps Insiders**, I have expanded my capabilities into modern **Kubernetes (AKS) orchestration**, **GitOps governance with Atlantis/OPA**, and **automated DevSecOps security scanning**.
+
+- 🏢 **Previous Experience:** Programmer Analyst (Azure Cloud & DevOps) at **Cognizant** (12/2021 – 02/2024).
+- 🎯 **Target Roles:** Azure DevOps Engineer | DevSecOps Engineer | Site Reliability Engineer (SRE) | Platform Engineer.
+- ⚡ **Key Metrics:** Reduced environment spin-up times by **65%** with Terraform, maintained **99.9% system uptime**, cut MTTR by **35%**, and reduced container images by **45%**.
+- 📍 **Status:** Based in India | Open to Relocate (Bangalore / Pan-India / Remote) | Available to join **Immediately (0–15 Days)**.
+
 ---
-### 🧰 The Modern Tech Matrix (Clickable Skill Dashboard)
+
+### 🧰 Technical Skills Matrix
+
+<div align="center">
+
+#### **Cloud Platforms & Containers**
+<a href="https://skillicons.dev">
+  <img src="https://skillicons.dev/icons?i=azure,linux,docker,kubernetes,nginx&theme=dark" />
+</a>
+
+<br>
+
+#### **Infrastructure as Code & CI/CD Pipelines**
+<a href="https://skillicons.dev">
+  <img src="https://skillicons.dev/icons?i=terraform,githubactions,git,bash,powershell,python&theme=dark" />
+</a>
+
+<br>
+
+#### **SRE Observability, Security & Developer Tools**
+<a href="https://skillicons.dev">
+  <img src="https://skillicons.dev/icons?i=prometheus,grafana,vscode,postman&theme=dark" />
+</a>
+
+<br>
+
+*(Also Proficient In: `Azure DevOps YAML`, `SonarQube (SAST)`, `Trivy (Container Scan)`, `OWASP ZAP (DAST)`, `Azure Key Vault`, `Open Policy Agent (OPA)`, `Atlantis`, `Log Analytics (KQL)`, `Azure Monitor`)*
+
+</div>
+
+---
+
+### 🏛️ Architecture & Pipeline Workflows
+
+#### **1. Enterprise Azure Landing Zone & Network Isolation**
+```mermaid
+graph TD
     classDef hub fill:#0d1117,stroke:#00D8FF,stroke-width:2px,color:#fff;
     classDef spoke fill:#0d1117,stroke:#7B42BC,stroke-width:2px,color:#fff;
-    classDef onprem fill:#161b22,stroke:#8b949e,stroke-width:1px,color:#8b949e;
-    OnPrem["🏢 On-Premises Datacenter"] -->|ExpressRoute / VPN Gateway| Hub["🛡️ HUB VNet (Central Inspection)"]
+
+    Internet["🌐 Public Traffic"] --> AppGW["🛡️ Layer-7 Application Gateway (WAF)"]
+    AppGW --> WebSubnet["💻 Web Tier Subnet (NSG Protected)"]
     
-    subgraph HubVNet ["HUB VNet Architecture"]
-        Hub --> FW["🔥 Azure Firewall / NVA"]
-        Hub --> DNS["🌐 Central Private DNS"]
+    subgraph AzureVNet ["Azure Virtual Network (VNet)"]
+        WebSubnet --> ILB["⚙️ Internal Load Balancer"]
+        ILB --> AppSubnet["⚙️ App Tier Subnet"]
+        AppSubnet --> DBSubnet["🗄️ Private DB Subnet (No Public IP)"]
+        AppSubnet -.->|Outbound Egress Only| NATGW["🚪 Azure NAT Gateway"]
     end
-    FW -->|UDR: 0.0.0.0/0 Peering| Spoke1["🚀 Spoke 1: App Tier (Private Subnets + DB)"]
-    FW -->|VNet Peering| Spoke2["⚙️ Spoke 2: Shared Tooling (CI/CD Runners, Bastion)"]
-    class Hub,FW,DNS hub;
-    class Spoke1,Spoke2 spoke;
-    class OnPrem onprem;
+
+    class AppGW,ILB,NATGW hub;
+    class WebSubnet,AppSubnet,DBSubnet spoke;
 ```
+
 <br>
-#### **2. Automated DevSecOps Shift-Left Pipeline**
+
+#### **2. Shift-Left DevSecOps Automated CI/CD Pipeline**
 ```mermaid
 flowchart LR
     classDef step fill:#0d1117,stroke:#00D8FF,stroke-width:1.5px,color:#fff;
     classDef gate fill:#0d1117,stroke:#e5534b,stroke-width:2px,color:#fff;
-    classDef prod fill:#0d1117,stroke:#2ea043,stroke-width:2px,color:#fff;
-    PR["Pull Request"] --> SAST["🔍 SonarQube (SAST)"]
-    SAST --> Trivy["🐳 Trivy (Container Scan)"]
-    Trivy --> OPA["📜 OPA (IaC Policy Check)"]
-    OPA --> Gate{"🛑 Automated Quality Gate"}
-    Gate -->|High/Critical CVE| Fail["❌ Reject PR"]
-    Gate -->|Zero CVEs| Staging["🧪 Deploy to Staging"]
-    Staging --> DAST["💥 OWASP ZAP (DAST)"]
-    DAST --> Prod["🚀 Zero-Downtime Prod Release"]
-    class PR,SAST,Trivy,OPA,Staging,DAST step;
-    class Gate,Fail gate;
-    class Prod prod;
+    classDef pass fill:#0d1117,stroke:#2ea043,stroke-width:2px,color:#fff;
+
+    Commit["Code Commit"] --> SAST["🔍 SonarQube (SAST)"]
+    SAST --> Build["🐳 Docker Build"]
+    Build --> Trivy["🛡️ Trivy (Image Scan)"]
+    Trivy --> QualityGate{"🛑 Security Gate"}
+    QualityGate -->|High/Crit CVEs| Fail["❌ Break Build"]
+    QualityGate -->|Zero High CVEs| Deploy["☸️ Deploy to AKS"]
+    Deploy --> Monitor["📊 Prometheus & Grafana"]
+
+    class Commit,SAST,Build,Trivy,Deploy,Monitor step;
+    class QualityGate,Fail gate;
+    class Deploy pass;
 ```
+
 ---
-### 📂 Featured Production Repositories
-          <img src="https://img.shields.io/badge/View_Source_Code-00C853?style=for-the-badge&logo=github&logoColor=white" />
+
+### 📂 Production Repositories & Real Implementations
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🛡️ <a href="https://github.com/vikasrao-ops/azure-devsecops-landingzone">Azure DevSecOps Landing Zone</a></h3>
+      <p><i>Terraform • Azure DevOps • SonarQube • Trivy • Key Vault</i></p>
+      <ul>
+        <li>Provisioned a secure 3-tier Azure landing zone with Layer-7 App Gateway, internal Load Balancers, and private subnets with NAT Gateway egress.</li>
+        <li>Built automated YAML pipelines integrating SonarQube, Trivy, and OWASP ZAP with quality gates that reject high/critical findings.</li>
+        <li>Eliminated 100% of hardcoded secrets using dynamic Azure Key Vault injection.</li>
+      </ul>
+      <p align="center">
+        <a href="https://github.com/vikasrao-ops/azure-devsecops-landingzone">
+          <img src="https://img.shields.io/badge/View_Repository-00D8FF?style=for-the-badge&logo=github&logoColor=black" />
+        </a>
+      </p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>⚙️ <a href="https://github.com/vikasrao-ops/terraform-azure-governance">Terraform GitOps Governance</a></h3>
+      <p><i>Terraform • Atlantis • GitHub Actions • Open Policy Agent (OPA)</i></p>
+      <ul>
+        <li>Implemented GitOps-based pull-request plan/apply workflows powered by Atlantis and GitHub Actions.</li>
+        <li>Enforced policy-as-code compliance checks prior to deployment using Open Policy Agent (OPA).</li>
+        <li>Managed remote state with automated blob leasing and state-locking on Azure Blob Storage.</li>
+      </ul>
+      <p align="center">
+        <a href="https://github.com/vikasrao-ops/terraform-azure-governance">
+          <img src="https://img.shields.io/badge/View_Repository-7B42BC?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" valign="top">
+      <h3 align="center">☸️ <a href="https://github.com/vikasrao-ops/aks-microservices-pipeline">Kubernetes Microservices & SRE Observability</a></h3>
+      <p align="center"><i>Docker • Azure Kubernetes Service (AKS) • Prometheus • Grafana</i></p>
+      <p align="center">
+        Engineered multi-stage Dockerfiles reducing production image sizes by <b>45%</b>. Deployed container workloads to <b>AKS</b> with ingress routing, Horizontal Pod Autoscaling (HPA), and real-time SRE golden signal monitoring dashboards in Prometheus and Grafana.
+      </p>
+      <p align="center">
+        <a href="https://github.com/vikasrao-ops/aks-microservices-pipeline">
+          <img src="https://img.shields.io/badge/View_Repository-00C853?style=for-the-badge&logo=github&logoColor=white" />
         </a>
       </p>
     </td>
   </tr>
 </table>
+
 ---
-### 📈 GitHub Analytics & Real-Time Telemetry
+
+### 📈 GitHub Analytics & Activity
+
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=vikasrao-ops&show_icons=true&theme=tokyonight&hide_border=false&border_color=00D8FF&border_radius=10&bg_color=0D1117&title_color=00D8FF&icon_color=00D8FF&text_color=94A3B8" width="49%" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=vikasrao-ops&theme=tokyonight&hide_border=false&border_color=7B42BC&border_radius=10&background=0D1117&stroke=7B42BC&ring=00D8FF&fire=00D8FF&currStreakNum=ffffff" width="49%" />
 </div>
+
 <br>
+
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=vikasrao-ops&layout=compact&theme=tokyonight&hide_border=false&border_color=00D8FF&border_radius=10&bg_color=0D1117&title_color=00D8FF&text_color=94A3B8" width="49%" />
 </div>
+
 ---
-<!-- FOOTER SECTION: ANIMATED WAVING CLOSING -->
+
+<!-- FOOTER SECTION -->
 <div align="center">
   <br>
-  <h3>⚡ Let's Build Resilient Platforms Together</h3>
-  <p>Available for <b>Platform Engineer</b>, <b>Site Reliability Engineer (SRE)</b>, and <b>DevOps & Multi-Cloud</b> roles.</p>
+  <h3>📫 Let's Connect</h3>
+  <p>Actively interviewing for <b>Azure DevOps Engineer</b>, <b>DevSecOps Engineer</b>, <b>SRE</b>, and <b>Platform Engineer</b> roles.</p>
   
   <a href="https://linkedin.com/in/vikasrao-connect">
-    <img src="https://img.shields.io/badge/Connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
   <a href="mailto:vikasrao.connect@gmail.com">
-    <img src="https://img.shields.io/badge/Send_an_Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
+    <img src="https://img.shields.io/badge/Email-Direct_Ping-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
+
   <br><br>
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&custom_color_list=0,7B42BC,1,00D8FF&height=100&section=footer" width="100%" />
 </div>
-
-    
-    
-  

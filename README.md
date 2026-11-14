@@ -2,12 +2,12 @@
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&custom_color_list=0,00D8FF,1,7B42BC&height=220&section=header&text=VIKAS%20RAO&fontSize=48&fontColor=ffffff&fontAlignY=36&desc=AZURE%20DEVOPS%20%7C%20DEVSECOPS%20%7C%20SRE%20%7C%20PLATFORM%20ENGINEER&descSize=15&descAlignY=58" width="100%" />
 
-  <!-- Animated Typing Tagline -->
+  <!-- Animated Typing Tagline (URL Encoded & Camo Compatible) -->
   <a href="https://github.com/vikasrao-ops">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=00D8FF&center=true&vCenter=true&width=750&lines=⚡+Azure+DevOps+Engineer+%7C+Multi-Stage+YAML+Pipelines;🛡️+DevSecOps+Pipelines+(SonarQube%2C+Trivy%2C+Key+Vault);☸️+Kubernetes+(AKS)+Microservices+%26+SRE+Telemetry;📜+Modular+Infrastructure+as+Code+with+Terraform;🚀+Immediate+Joiner+(0-15+Days)+%7C+Ex-Cognizant+(2%2B+YOE)" alt="Typing Tagline" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=00D8FF&center=true&vCenter=true&width=750&lines=Azure%20DevOps%20Engineer%20%7C%20CI%2FCD%20Pipelines;DevSecOps%20%7C%20SonarQube%2C%20Trivy%20%26%20Key%20Vault;Kubernetes%20%28AKS%29%20%26%20SRE%20Observability;Infrastructure%20as%20Code%20with%20Terraform;Immediate%20Joiner%20%280-15%20Days%29%20%7C%20Ex-Cognizant" alt="Typing Tagline" />
   </a>
 
-  <br>
+  <br><br>
 
   <!-- Status & Quick Links Ribbon -->
   <p align="center">
@@ -164,14 +164,14 @@ flowchart LR
 ### 📈 GitHub Analytics & Activity
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=vikasrao-ops&show_icons=true&theme=tokyonight&hide_border=false&border_color=00D8FF&border_radius=10&bg_color=0D1117&title_color=00D8FF&icon_color=00D8FF&text_color=94A3B8" width="49%" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=vikasrao-ops&theme=tokyonight&hide_border=false&border_color=7B42BC&border_radius=10&background=0D1117&stroke=7B42BC&ring=00D8FF&fire=00D8FF&currStreakNum=ffffff" width="49%" />
+  <img src="https://github-readme-stats-anuraghazra.vercel.app/api?username=vikasrao-ops&show_icons=true&theme=tokyonight&hide_border=false&border_color=00D8FF&border_radius=10&bg_color=0D1117&title_color=00D8FF&icon_color=00D8FF&text_color=94A3B8" width="49%" />
+  <img src="https://streak-stats.demolab.com?user=vikasrao-ops&theme=tokyonight&hide_border=false&border_color=7B42BC&border_radius=10&background=0D1117&stroke=7B42BC&ring=00D8FF&fire=00D8FF&currStreakNum=ffffff" width="49%" />
 </div>
 
 <br>
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=vikasrao-ops&layout=compact&theme=tokyonight&hide_border=false&border_color=00D8FF&border_radius=10&bg_color=0D1117&title_color=00D8FF&text_color=94A3B8" width="49%" />
+  <img src="https://github-readme-stats-anuraghazra.vercel.app/api/top-langs/?username=vikasrao-ops&layout=compact&theme=tokyonight&hide_border=false&border_color=00D8FF&border_radius=10&bg_color=0D1117&title_color=00D8FF&text_color=94A3B8" width="49%" />
 </div>
 
 ---
